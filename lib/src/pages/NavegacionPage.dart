@@ -50,10 +50,10 @@ class BottomNavigation extends StatelessWidget {
                     from: 10.0,
                     controller: (controller)=>Provider.of<_NotificationModel>(context).bouncecontroller = controller,
                     child: Container(
-                      child: Text("$numero",style: TextStyle(color: Colors.white,fontSize: 7.0,),),
+                      child: Text("$numero",style: TextStyle(color: Colors.white,fontSize: 9.0,),),
                       alignment: Alignment.center,
-                      width: 12.0,
-                      height: 12.0,
+                      width: 14.0,
+                      height: 14.0,
                       decoration: BoxDecoration(
                         color: Colors.redAccent,
                         shape: BoxShape.circle

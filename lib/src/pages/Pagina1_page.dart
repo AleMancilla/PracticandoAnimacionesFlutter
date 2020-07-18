@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:animated_do_app/src/pages/NavegacionPage.dart';
 import 'package:animated_do_app/src/pages/twitterPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,9 @@ class Pagina1_page extends StatelessWidget {
         
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>NavegacionPage()));
+        },
         child: FaIcon(FontAwesomeIcons.play),
       ),
 
