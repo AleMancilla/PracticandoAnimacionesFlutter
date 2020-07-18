@@ -1,4 +1,6 @@
+import 'package:animated_do_app/src/pages/NavegacionPage.dart';
 import 'package:animated_do_app/src/pages/Pagina1_page.dart';
+import 'package:animated_do_app/src/pages/twitterPage.dart';
 import 'package:flutter/material.dart';
  
 void main() => runApp(MyApp());
@@ -8,11 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      debugShowCheckedModeBanner: true,
-      initialRoute: "/home",
-      routes: {
-        "/home" : (BuildContext context) => Pagina1_page()
-      },
+      debugShowCheckedModeBanner: false,
+      home: TwitterPage(),
     );
   }
 }
