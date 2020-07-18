@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final int numero = Provider.of<_NotificationModel>(context).numero;
+
     return BottomNavigationBar(
       currentIndex: 0,
       selectedItemColor: Colors.pink,
@@ -41,14 +43,22 @@ class BottomNavigation extends StatelessWidget {
               Positioned(
                 top: 0.0,
                 right: 0.0,
-                child: Container(
-                  child: Text("$numero",style: TextStyle(color: Colors.white,fontSize: 7.0,),),
-                  alignment: Alignment.center,
-                  width: 12.0,
-                  height: 12.0,
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    shape: BoxShape.circle
+                child: BounceInDown(
+                  from: 10.0,
+                  animate: (numero>0)?true:false,
+                  child: Bounce(
+                    from: 10.0,
+                    controller: (controller)=>Provider.of<_NotificationModel>(context).bouncecontroller = controller,
+                    child: Container(
+                      child: Text("$numero",style: TextStyle(color: Colors.white,fontSize: 7.0,),),
+                      alignment: Alignment.center,
+                      width: 12.0,
+                      height: 12.0,
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        shape: BoxShape.circle
+                      ),
+                    ),
                   ),
                 )
               )
@@ -74,6 +84,11 @@ class BotonFlotante extends StatelessWidget {
         int numero = Provider.of<_NotificationModel>(context,listen: false).numero;
         numero ++;
         Provider.of<_NotificationModel>(context,listen: false).numero = numero;
+
+        if(numero >= 2){
+          final controller = Provider.of<_NotificationModel>(context,listen: false).bouncecontroller;
+          controller.forward(from:0.0);
+        }
       },
       backgroundColor: Colors.pink,
       child: FaIcon(FontAwesomeIcons.play),
@@ -84,9 +99,17 @@ class BotonFlotante extends StatelessWidget {
 
 class _NotificationModel extends ChangeNotifier {
   int _numero = 0;
+  AnimationController _bouncecontroller;
+
   int get numero => this._numero;
   set numero(int numero){
     this._numero = numero;
     notifyListeners();
+  }
+
+  AnimationController get bouncecontroller => this._bouncecontroller;
+  set bouncecontroller(AnimationController controller){
+    this._bouncecontroller = controller;
+    //notifyListeners();
   }
 }
